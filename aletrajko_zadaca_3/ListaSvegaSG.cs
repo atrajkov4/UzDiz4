@@ -31,11 +31,62 @@ namespace aletrajko_zadaca_3
         List<Mjesto> backup_mjesta2 = new List<Mjesto>();
 
         public void CreateMemento() {
-            backup_mjesta2 = mjesta;
+            foreach (Mjesto r in mjesta) {
+                Mjesto g = new Mjesto(r.naziv, r.tip, r.broj_senzora, r.broj_senzora);
+                g.ID = r.ID;
+
+                foreach (Senzor ss in r.ls)
+                {
+                    Senzor s = (Senzor)ss.kloniraj(ss.naziv, ss.tip, ss.vrsta, ss.min_vrijednost, ss.max_vrijednost);
+                    s.ID = ss.ID;
+                    s.vrijednost = ss.vrijednost;
+                    s.uklonjen = ss.uklonjen;
+                    s.manjkav = ss.manjkav;
+                    s.ispravnost = ss.ispravnost;
+                    g.ls.Add(s);
+
+                }
+
+                foreach (Aktuator a in r.la) {
+                    Aktuator b = (Aktuator)a.kloniraj(a.naziv,a.tip,a.vrsta,a.min_vrijednost,a.max_vrijednost);
+                    b.ID = a.ID;
+                    b.vrijednost = a.vrijednost;
+                    b.uklonjen = a.uklonjen;
+                    b.manjkav = a.manjkav;
+                    b.ispravnost = a.ispravnost;
+
+                    foreach (Senzor ss in a.lss) {
+                        Senzor s = (Senzor)ss.kloniraj(ss.naziv,ss.tip,ss.vrsta,ss.min_vrijednost,ss.max_vrijednost);
+                        s.ID = ss.ID;
+                        s.vrijednost = ss.vrijednost;
+                        s.uklonjen = ss.uklonjen;
+                        s.manjkav = ss.manjkav;
+                        s.ispravnost = ss.ispravnost;
+                        b.lss.Add(s);
+
+                    }
+                    g.la.Add(b);
+                    //Dodaj b u listu mjesta
+                }
+                
+                
+                
+                backup_mjesta2.Add(g);
+            }
+
+            IspisUpisSG v = IspisUpisSG.getInstance();
+            v.print(backup_mjesta2.Count().ToString() + " " + mjesta.Count().ToString());
+
+        }
+
+        public List<Mjesto> rr() {
+            return backup_mjesta2;
         }
 
         public void SetMemento() {
             mjesta = backup_mjesta2;
+            IspisUpisSG v = IspisUpisSG.getInstance();
+            v.print(backup_mjesta2.Count().ToString() + " " + mjesta.Count().ToString());
         }
 
         List<Senzor> kvarni_s = new List<Senzor>();

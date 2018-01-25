@@ -36,10 +36,10 @@ namespace aletrajko_zadaca_3
         public void StartSystem() {
             IspisUpisSG v = IspisUpisSG.getInstance();
             v.print("");
-            pr.prikazMj();
-            pr.prikazSenz();
-            pr.prikazAkt();
-            pr.prikazSparenih();
+            //pr.prikazMj();
+            //pr.prikazSenz();
+            //pr.prikazAkt();
+            //pr.prikazSparenih();
             v.cekajUpute();
         }
 

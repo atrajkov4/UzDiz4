@@ -29,7 +29,10 @@ namespace aletrajko_zadaca_3
                 F_Simplifier fsim =F_Simplifier.getInstance();
                 fsim.InitiateSystem(naredbe);
                 fsim.StartSystem();
-                fsim.Finishing();
+                ListaSvegaSG ls = ListaSvegaSG.getInstance();
+                
+                //fsim.Finishing();
+               
                 
             }
             else {
