@@ -16,6 +16,9 @@ namespace aletrajko_zadaca_3
         C_Parametri par = C_Parametri.getInstance();
         ListaSvegaSG db = ListaSvegaSG.getInstance();
         Prikazi pr = new Prikazi();
+        Originator o = new Originator();
+        Pazikuca p = new Pazikuca();
+
         string naredbe = "";
         private static volatile F_Simplifier INSTANCE = new F_Simplifier();
 
@@ -50,13 +53,18 @@ namespace aletrajko_zadaca_3
         
         
         public void SP() {
+            IspisUpisSG v = IspisUpisSG.getInstance();
             ListaSvegaSG ls = ListaSvegaSG.getInstance();
-            ls.CreateMemento();
+            o.set(ls.CreateMemento());
+            p.addMemento(o.storeInMemento());
+
         }
 
         public void VP() {
+            IspisUpisSG v = IspisUpisSG.getInstance();
             ListaSvegaSG ls = ListaSvegaSG.getInstance();
-            ls.SetMemento();
+
+            ls.SetMemento(o.restoreFromMemento(p.getMemento()));
         }
 
         /*

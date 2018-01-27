@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace aletrajko_zadaca_3
 {
-    class ListaSvegaSG: Mem_LS
+    class ListaSvegaSG
     {
         private static volatile ListaSvegaSG INSTANCE = new ListaSvegaSG();
         private ListaSvegaSG() { }
@@ -30,7 +30,8 @@ namespace aletrajko_zadaca_3
 
         List<Mjesto> backup_mjesta2 = new List<Mjesto>();
 
-        public void CreateMemento() {
+        public List<Mjesto> CreateMemento() {
+            backup_mjesta2.RemoveAll(a => a.ID > 0);
             foreach (Mjesto r in mjesta) {
                 Mjesto g = new Mjesto(r.naziv, r.tip, r.broj_senzora, r.broj_senzora);
                 g.ID = r.ID;
@@ -74,20 +75,26 @@ namespace aletrajko_zadaca_3
                 backup_mjesta2.Add(g);
             }
 
-            IspisUpisSG v = IspisUpisSG.getInstance();
-            v.print(backup_mjesta2.Count().ToString() + " " + mjesta.Count().ToString());
-
-        }
-
-        public List<Mjesto> rr() {
+            //IspisUpisSG v = IspisUpisSG.getInstance();
+            //v.print(backup_mjesta2.Count().ToString() + " " + mjesta.Count().ToString());
+            
             return backup_mjesta2;
         }
-
-        public void SetMemento() {
-            mjesta = backup_mjesta2;
+        
+        public void SetMemento(List<Mjesto> bm2) {
             IspisUpisSG v = IspisUpisSG.getInstance();
-            v.print(backup_mjesta2.Count().ToString() + " " + mjesta.Count().ToString());
+            try
+            {
+                mjesta = bm2;
+                
+                v.print(bm2.Count().ToString() + " " + mjesta.Count().ToString());
+            }
+            catch (Exception e) {
+                v.print(e.ToString());
+            }
+           
         }
+
 
         List<Senzor> kvarni_s = new List<Senzor>();
         List<Aktuator> kvarni_a = new List<Aktuator>();

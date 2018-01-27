@@ -46,7 +46,7 @@
     <Compile Include="AktuatorBuilder.cs" />
     <Compile Include="AlgoritamABC.cs" />
     <Compile Include="Chain.cs" />
-    <Compile Include="Mem_LS.cs" />
+    <Compile Include="MementoLS.cs" />
     <Compile Include="ObserverIF.cs" />
     <Compile Include="ConcUredjajiFM.cs" />
     <Compile Include="C_Connector.cs" />
@@ -59,6 +59,8 @@
     <Compile Include="Mjesto.cs" />
     <Compile Include="ListaSvegaSG.cs" />
     <Compile Include="MjestoBuilder.cs" />
+    <Compile Include="Originator.cs" />
+    <Compile Include="Pazikuca.cs" />
     <Compile Include="Prikazi.cs" />
     <Compile Include="Senzor.cs" />
     <Compile Include="M_Senzuator.cs" />

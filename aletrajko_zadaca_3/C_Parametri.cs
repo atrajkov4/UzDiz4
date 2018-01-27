@@ -24,6 +24,7 @@ namespace aletrajko_zadaca_3
         
 
         int br, bs, brk,tcd;
+        int kmax, kmin, kpov;
         public int gg;
         public int ppi;
 
@@ -331,7 +332,21 @@ namespace aletrajko_zadaca_3
                     cc.preuzmiIme(lokalna[index + 1]);
                 }
 
-                
+                index = lokalna.FindIndex(a => a.Equals("-kmax"));
+                if (index == -1)
+                {
+                    iu.print("Nije unesena kmax opcija.(kmax = 100).");
+                    kmax = 100;
+                }
+                else {
+                    try {
+                        kmax = Int32.Parse(lokalna[index + 1]);
+                    } catch (Exception) {
+                        iu.print("Kmax nije dobrog formata.(kmax = 100)");
+                        kmax = 100;
+                    }
+                }
+                index = lokalna.FindIndex(a => a.Equals("-kmin"));
 
             }
 
