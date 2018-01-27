@@ -8,6 +8,13 @@ namespace aletrajko_zadaca_3
 {
     class Pazikuca
     {
+        private static volatile Pazikuca INSTANCE = new Pazikuca();
+        private Pazikuca() { }
+        public static Pazikuca getInstance()
+        {
+            return INSTANCE;
+        }
+
         List<MementoLS> savedArticles = new List<MementoLS>();
         public void addMemento(MementoLS m) { savedArticles.Add(m); }
 

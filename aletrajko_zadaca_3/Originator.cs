@@ -8,6 +8,13 @@ namespace aletrajko_zadaca_3
 {
     class Originator
     {
+        private static volatile Originator INSTANCE = new Originator();
+        private Originator() { }
+        public static Originator getInstance()
+        {
+            return INSTANCE;
+        }
+
         private List<Mjesto> mjesto;
 
         public void set(List<Mjesto> novoMesto) {

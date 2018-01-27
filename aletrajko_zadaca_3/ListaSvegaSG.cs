@@ -87,7 +87,6 @@ namespace aletrajko_zadaca_3
             {
                 mjesta = bm2;
                 
-                v.print(bm2.Count().ToString() + " " + mjesta.Count().ToString());
             }
             catch (Exception e) {
                 v.print(e.ToString());

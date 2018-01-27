@@ -46,6 +46,8 @@
     <Compile Include="AktuatorBuilder.cs" />
     <Compile Include="AlgoritamABC.cs" />
     <Compile Include="Chain.cs" />
+    <Compile Include="CommandIF.cs" />
+    <Compile Include="CreateMemento.cs" />
     <Compile Include="MementoLS.cs" />
     <Compile Include="ObserverIF.cs" />
     <Compile Include="ConcUredjajiFM.cs" />
