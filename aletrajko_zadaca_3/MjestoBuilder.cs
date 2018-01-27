@@ -36,7 +36,7 @@ namespace aletrajko_zadaca_3
                                 m.tip = Int32.Parse(splitano[2]);
                                 m.broj_senzora = Int32.Parse(splitano[3]);
                                 m.broj_aktuatora = Int32.Parse(splitano[4]);
-                            if (cp.postojiID(Int32.Parse(splitano[0]))){
+                            if (cp.postojiIDM(Int32.Parse(splitano[0]))){
                                 iu.print("ID za mjesto '" + splitano[1] + "' već postoji!");
                             }
                             else m.ID = Int32.Parse(splitano[0]);
@@ -47,7 +47,7 @@ namespace aletrajko_zadaca_3
                             }
                             else {
                                 lm.dodajMjesto(m);
-                                lm.dodajID(m.ID);
+                                lm.dodajIDM(m.ID);
                             }
                             
                             }

@@ -38,10 +38,10 @@ namespace aletrajko_zadaca_3
         public void StartSystem() {
             IspisUpisSG v = IspisUpisSG.getInstance();
             v.print("");
-            //pr.prikazMj();
-            //pr.prikazSenz();
-            //pr.prikazAkt();
-            //pr.prikazSparenih();
+            pr.prikazMj();
+            pr.prikazSenz();
+            pr.prikazAkt();
+            pr.prikazSparenih();
             v.cekajUpute();
         }
 
@@ -58,11 +58,7 @@ namespace aletrajko_zadaca_3
         }
 
         public void VP() {
-            Originator o = Originator.getInstance();
-            Pazikuca p = Pazikuca.getInstance();
-            ListaSvegaSG ls = ListaSvegaSG.getInstance();
-
-            ls.SetMemento(o.restoreFromMemento(p.getMemento()));
+            
         }
 
         /*

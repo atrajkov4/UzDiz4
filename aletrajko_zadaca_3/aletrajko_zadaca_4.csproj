@@ -64,6 +64,7 @@
     <Compile Include="Originator.cs" />
     <Compile Include="Pazikuca.cs" />
     <Compile Include="Prikazi.cs" />
+    <Compile Include="RestoreMemento.cs" />
     <Compile Include="Senzor.cs" />
     <Compile Include="M_Senzuator.cs" />
     <Compile Include="Program.cs" />

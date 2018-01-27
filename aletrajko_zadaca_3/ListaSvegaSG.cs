@@ -13,7 +13,16 @@ namespace aletrajko_zadaca_3
         public static ListaSvegaSG getInstance() {
             return INSTANCE;
         }
-
+        int kmin, kmax, kpov;
+        public void dodajKmin(int n) {
+            kmin = n;
+        }
+        public void dodajKmax(int n) {
+            kmax = n;
+        }
+        public void dodajKpov(int n) {
+            kpov = n;
+        }
         int sansa = 0;
 
         public void preuzmiIspravnost(int n) {
@@ -22,11 +31,15 @@ namespace aletrajko_zadaca_3
         public int dajSansu() {
             return sansa;
         }
-        
+        List<Senzor> ks = new List<Senzor>();
+        List<Aktuator> ka = new List<Aktuator>();
         List<Mjesto> mjesta = new List<Mjesto>();
         List<Senzor> senzori = new List<Senzor>();
         List<Aktuator> aktuatori = new List<Aktuator>();
+
         List<int> ID = new List<int>();
+        List<int> IDM = new List<int>();
+ 
 
         List<Mjesto> backup_mjesta2 = new List<Mjesto>();
 
@@ -120,6 +133,8 @@ namespace aletrajko_zadaca_3
             else broj = 0;
             return broj;
         }
+        public List<int> dajIDM() { return IDM; }
+        public void dodajIDM(int n) { IDM.Add(n); }
 
         public void dodajID(int n) { ID.Add(n); }
         

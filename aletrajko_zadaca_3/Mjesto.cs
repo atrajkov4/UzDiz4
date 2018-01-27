@@ -15,6 +15,8 @@ namespace aletrajko_zadaca_3
         public int broj_senzora { get; set; }
         public int broj_aktuatora { get; set; }
         public int ID;
+        List<Mjesto> mm = new List<Mjesto>();
+
         public Mjesto()
         {
 

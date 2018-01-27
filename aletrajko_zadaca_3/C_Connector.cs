@@ -39,11 +39,87 @@ namespace aletrajko_zadaca_3
             }
 
 
-            spari();
+            spariRaspored();
+            spariSA();
+        }
+
+        void spariMjesta() {
 
         }
 
-        public void spari() {
+        void spariSA() {
+            int c = 0;
+            try
+            {
+                List<Mjesto> lm = db.dajMjesta();
+                List<Senzor> ls = db.dajSenzore();
+                List<Aktuator> la = db.dajAktuatore();
+
+                string[] linije = System.IO.File.ReadAllLines(filename);
+                foreach (string l in linije)
+                {
+
+                    if (c > 3)
+                    {
+                        string[] splitano = l.Split(';');
+
+                        try
+                        {
+                            if (Int32.Parse(splitano[0]) == 1)
+                            {
+                                foreach (Mjesto m in lm)
+                                {
+
+                                    foreach (Aktuator a in m.la)
+                                    {
+                                        if (Int32.Parse(splitano[1]) == a.ID)
+                                        {
+                                            for (int z44 = 2; z44 < splitano.Length; z44++)
+                                            {
+
+                                                foreach (Senzor s in m.ls)
+                                                {
+                                                    if (s.ID == Int32.Parse(splitano[z44]))
+                                                    {
+                                                        a.lss.Add(s);
+                                                    }
+                                                }
+
+                                            }
+
+                                        }
+
+                                    }
+
+
+                                }
+
+                            }
+                            db.aktualizirajMjesta(lm);
+                        }
+                        catch (Exception)
+                        {
+                            //iu.print(e.ToString());
+                            iu.print("[Greška!] Došlo je do greške pri raspoređivanju senzora s aktuatorima.");
+                            iu.print("Redak : " + l);
+
+                        };
+
+
+                    }
+                    c++;
+
+                }
+
+
+            }
+            catch (Exception)
+            {
+                iu.print(" [Raspored] Datoteka s nazivom '" + filename + "' ne postoji. Završetak rada.");
+            }
+        }
+
+        public void spariRaspored() {
             int c = 0;
             try
             {
@@ -55,7 +131,7 @@ namespace aletrajko_zadaca_3
                 foreach (string l in linije)
                 {
                     
-                    if (c > 2)
+                    if (c > 3)
                     {
                         string[] splitano = l.Split(';');
                         
@@ -85,7 +161,7 @@ namespace aletrajko_zadaca_3
 
                                                 }
                                             }
-                                            else iu.print(iu.pofarbaj("crvena") + "***" + m.naziv + " ima max.broj aktuatora.***" + iu.pofarbaj("bijela"));
+                                            else iu.print(iu.pofarbaj("crvena") + m.naziv + " ima max.broj aktuatora." + iu.pofarbaj("bijela"));
                                         }
                                         if (Int32.Parse(splitano[2]) == 0) {
                                             //senzor
@@ -107,48 +183,19 @@ namespace aletrajko_zadaca_3
                                                   
                                                 }
                                             }
-                                           else iu.print(iu.pofarbaj("crvena") + "***" + m.naziv + " ima max.broj senzora.***" + iu.pofarbaj("bijela"));
+                                           else iu.print(iu.pofarbaj("crvena") + m.naziv + " ima max.broj senzora." + iu.pofarbaj("bijela"));
                                         }
                                     }
                                 }
                             }
-                            if (Int32.Parse(splitano[0]) == 1) {
-                                foreach (Mjesto m in lm) {
-                                    
-                                    foreach (Aktuator a in m.la)
-                                        {
-                                            if (Int32.Parse(splitano[1]) == a.ID)
-                                            {
-                                                
-                                                string[] senzori = splitano[2].Split(',');
-
-                                                foreach (string snz in senzori)
-                                                {
-                                                    foreach (Senzor s in m.ls)
-                                                    {
-                                                        if (s.ID == Int32.Parse(snz)) {
-                                                            a.lss.Add(s);
-                                                    }
-                                                    }
-                                                   
-
-                                                } 
-                                                
-                                            }
-                                            
-                                        }
-                                        
-                                    
-                                }
-
-                            }
+                           
 
                            db.aktualizirajMjesta(lm);
                         }
                         catch (Exception e)
                         {
                             //iu.print(e.ToString());
-                            iu.print("[Greška!] Došlo je do greške pri raspoređivanju uređaja.");
+                            iu.print("[Greška!] Došlo je do greške pri raspoređivanju uređaja po Mjestima.");
                             iu.print("Redak : " + l);
 
                         };

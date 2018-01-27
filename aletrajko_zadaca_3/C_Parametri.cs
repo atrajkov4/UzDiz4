@@ -70,6 +70,18 @@ namespace aletrajko_zadaca_3
             }
             return exists;
         }
+
+        public bool postojiIDM(int broj)
+        {
+            bool exists = false;
+            foreach (int n in db.dajIDM())
+            {
+                if (n == broj) exists = true;
+            }
+            return exists;
+        }
+
+
         public bool postojiID(int broj)
         {
             bool exists = false;
@@ -331,22 +343,62 @@ namespace aletrajko_zadaca_3
                     C_Connector cc = C_Connector.getInstance();
                     cc.preuzmiIme(lokalna[index + 1]);
                 }
-
+                ListaSvegaSG ls = ListaSvegaSG.getInstance();
                 index = lokalna.FindIndex(a => a.Equals("-kmax"));
                 if (index == -1)
                 {
                     iu.print("Nije unesena kmax opcija.(kmax = 100).");
-                    kmax = 100;
+                    ls.dodajKmax(100);
                 }
                 else {
                     try {
                         kmax = Int32.Parse(lokalna[index + 1]);
+                        ls.dodajKmax(kmax);
+
                     } catch (Exception) {
                         iu.print("Kmax nije dobrog formata.(kmax = 100)");
-                        kmax = 100;
+                        ls.dodajKmax(100);
                     }
                 }
                 index = lokalna.FindIndex(a => a.Equals("-kmin"));
+                if (index == -1)
+                {
+                    iu.print("Nije unesena kmax opcija.(kmin = 5).");
+                    ls.dodajKmin(5);
+                }
+                else
+                {
+                    try
+                    {
+                        kmin = Int32.Parse(lokalna[index + 1]);
+                        ls.dodajKmin(kmin);
+                    }
+                    catch (Exception)
+                    {
+                        iu.print("Kmin nije dobrog formata.(kmin = 100)");
+                        ls.dodajKmin(5);
+                    }
+                }
+
+                index = lokalna.FindIndex(a => a.Equals("-kpov"));
+                if (index == -1)
+                {
+                    iu.print("Nije unesena kpov opcija.(kpov = 5).");
+                    ls.dodajKpov(5);
+                }
+                else
+                {
+                    try
+                    {
+                        kpov = Int32.Parse(lokalna[index + 1]);
+                        ls.dodajKpov(kpov);
+                    }
+                    catch (Exception)
+                    {
+                        iu.print("Kpov nije dobrog formata.(kpov = 100)");
+                        ls.dodajKpov(5);
+                    }
+                }
 
             }
 

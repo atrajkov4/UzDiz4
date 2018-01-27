@@ -26,7 +26,9 @@ namespace aletrajko_zadaca_3
                 iu.print(iu.pofarbaj("crvena") + "\t[Naziv]\t\t[ID]\t[TIP]\t[Br.Senzora]\t[Br.Aktuatora]" + iu.pofarbaj("bijela"));
                 foreach (Mjesto m in db.dajMjesta())
                 {
-                    iu.print(m.dohvatiNaziv() + "\t  " + m.ID.ToString() + "\t   " + m.dohvatiTip() + "\t\t" + m.dohvatiBrojSenzora() + "\t\t " + m.dohvatiBrojAktuatora());
+                    if(m.dohvatiNaziv().Length <= 14 && m.dohvatiNaziv().Length > 8) iu.print(m.dohvatiNaziv() + "\t\t  " + m.ID.ToString() + "\t   " + m.dohvatiTip() + "\t\t" + m.dohvatiBrojSenzora() + "\t\t " + m.dohvatiBrojAktuatora());
+                    else if (m.dohvatiNaziv().Length <= 7) iu.print(m.dohvatiNaziv() + "\t\t\t  " + m.ID.ToString() + "\t   " + m.dohvatiTip() + "\t\t" + m.dohvatiBrojSenzora() + "\t\t " + m.dohvatiBrojAktuatora());
+                    else iu.print(m.dohvatiNaziv() + "\t  " + m.ID.ToString() + "\t   " + m.dohvatiTip() + "\t\t" + m.dohvatiBrojSenzora() + "\t\t " + m.dohvatiBrojAktuatora());
 
 
                 }

@@ -79,8 +79,8 @@ namespace aletrajko_zadaca_3
                 postavi(brojac, 0);
                 if (brojac == (br - brk))
                 {
-                    postavi(br, bs);
-                    Console.Write(pofarbaj("zelena") + ">>" + pofarbaj("bijela"));
+                    postavi(br, bs-6);
+                    Console.Write(pofarbaj("zelena") + "press n|N" + pofarbaj("bijela"));
                     postavi(br - brk + 1, 20);
                   mm:Console.Write(ANSI_ESC + "K");
                     string n = Console.ReadLine();
@@ -100,7 +100,7 @@ namespace aletrajko_zadaca_3
                
                 Console.Write(s);
 
-                postavi(brojac, bs + 1);
+                postavi(brojac, bs);
 
 
                 Console.Write(pofarbaj("zuta"));
