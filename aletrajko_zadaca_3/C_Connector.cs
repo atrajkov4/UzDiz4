@@ -41,13 +41,73 @@ namespace aletrajko_zadaca_3
 
             spariRaspored();
             spariSA();
+            spariMjesta();
         }
 
-        void spariMjesta() {
+        void spariMjesta()
+        {
+            int c = 0;
+            try
+            {
+                List<Mjesto> lm = db.dajMjesta();
+                List<Senzor> ls = db.dajSenzore();
+                List<Aktuator> la = db.dajAktuatore();
 
+                string[] linije = System.IO.File.ReadAllLines(filename);
+                foreach (string l in linije)
+                {
+
+                    if (c > 3)
+                    {
+                        string[] splitano = l.Split(';');
+
+                        try
+                        {
+                            if (Int32.Parse(splitano[0]) == 2)
+                            {
+                                foreach (Mjesto m in lm) {
+                                    if (Int32.Parse(splitano[1]) == m.ID) {
+                                        for (int g = 2; g < splitano.Length; g++) {
+                                            foreach (Mjesto z in lm) {
+                                                if (Int32.Parse(splitano[g]) == z.ID)
+                                                {
+                                                    if (!db.provjeraMM(z))
+                                                    {
+                                                        m.mm.Add(z);
+                                                        z.ancestor = m;
+                                                    }
+                                                    else iu.print(z.dohvatiNaziv() + " je već dio drugog mjesta.");
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            db.aktualizirajMjesta(lm);
+                        }
+                        catch (Exception)
+                        {
+                            //iu.print(e.ToString());
+                            iu.print("[Greška!] Došlo je do greške pri raspoređivanju mjsta s mjestima.");
+                            iu.print("Redak : " + l);
+
+                        };
+
+
+                    }
+                    c++;
+
+                }
+
+
+            }
+            catch (Exception)
+            {
+                iu.print(" [Raspored] Datoteka s nazivom '" + filename + "' ne postoji. Završetak rada.");
+            }
         }
 
-        void spariSA() {
+            void spariSA() {
             int c = 0;
             try
             {

@@ -136,6 +136,45 @@ namespace aletrajko_zadaca_3
             }
         }
 
+        public void prikazMMM(int o) {
+            IspisUpisSG iu = IspisUpisSG.getInstance();
+            foreach (Mjesto m in db.dajMjesta())
+            {
+                if (m.ID == o)
+                {
+                    iu.print("_________________");
+                    iu.print(m.dohvatiNaziv());
+
+                    if (m.mm.Count() > 0)
+                    {
+                        foreach (Mjesto n in m.mm)
+                        {
+                            iu.print("..." + n.dohvatiNaziv());
+                            if (n.mm.Count() > 0)
+                            {
+                                foreach (Mjesto z in n.mm)
+                                {
+                                    iu.print("......" + z.dohvatiNaziv());
+                                    if (z.mm.Count() > 0)
+                                    {
+                                        foreach (Mjesto p in z.mm)
+                                        {
+                                            iu.print("......." + p.dohvatiNaziv());
+
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    iu.print("_________________");
+                }
+                
+
+            }
+        }
+
         
         public void prikazSenzuatora(int n, string oznaka) {
             IspisUpisSG iu = IspisUpisSG.getInstance();
@@ -172,5 +211,41 @@ namespace aletrajko_zadaca_3
                 
             }
         }
+
+        public void prikazMjestaMjesta() {
+
+            if (db.dajMjesta().Count > 0)
+            {
+                IspisUpisSG iu = IspisUpisSG.getInstance();
+
+                foreach (Mjesto m in db.dajMjesta().Where(a=>a.ancestor==null) ) {
+                    
+                    iu.print(m.dohvatiNaziv());
+
+                    if (m.mm.Count() > 0) {
+                        foreach (Mjesto n in m.mm) {
+                            iu.print( "__" + n.dohvatiNaziv());
+                            if(n.mm.Count()>0) {
+                                foreach (Mjesto z in n.mm)
+                                {
+                                    iu.print("_____" + z.dohvatiNaziv());
+                                    if (z.mm.Count() > 0) {
+                                        foreach(Mjesto p in z.mm)
+                                        {
+                                            iu.print("_______" + p.dohvatiNaziv());
+
+                                        }
+                                        
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                }
+               
+            }
+        }
+
     }
 }

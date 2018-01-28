@@ -180,14 +180,27 @@ namespace aletrajko_zadaca_3
                         print("M x - ispis podataka mjesta x");
                         print("S x - ispis podataka senzora x");
                         print("A x - ispis podataka aktuatora x");
+                        print("SM x - ispis strukture mjesta x");
+                        print("TS x  - ispis podataka o kolekciji modela senzora x ");
+                        print("TA x  - ispis podataka o kolekciji modela aktuatora x");
                         print("SP - spremi podatke (Mj,Ur)");
                         print("S - ispis statistike");
                         print("VP - vrati spremljene podatke(Mj,Ur)");
                         print("C n - izvršavanje n ciklusa dretve");
+                        print("CP n - broj ciklusa dretve nakon kojih je uređaj popravljen i vraća se na raspolaganje (1-99)");
                         print("VF - {stat | stat2}");
                         print("PI n - prosječna ispravnost (0-100%)");
                         print("I - izlaz");
                         break;
+                    case "SM":
+
+                        try {
+                            pr.prikazMMM(Int32.Parse(dimer[1]));
+                        } catch (Exception) {
+                            print("ID mjesta nije dobar");
+                        }
+                        break;
+
                     case "M":
                         try
                         {
