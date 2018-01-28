@@ -120,13 +120,18 @@ namespace aletrajko_zadaca_3
         public List<Senzor> dajKvarneS() { return kvarni_s; }
         public List<Aktuator> dajKvarneA(){ return kvarni_a; }
 
+
         public bool provjeraMM(Mjesto M) {
             bool nadjen = false;
             int occ = 0;
             foreach (Mjesto mn in mjesta) {
                 if (mn.mm.Count() > 0) {
                     foreach (Mjesto mnm in mn.mm) {
-                        if (M.ID == mnm.ID) occ++;
+                        if (M.ID == mnm.ID) {
+                            occ++;
+                            Console.Write("! " + occ.ToString());
+                        }
+                        
                     }
                 }
 
@@ -134,6 +139,7 @@ namespace aletrajko_zadaca_3
             if (occ > 1) nadjen = true;
             return nadjen;
         }
+
 
         public int nadjiMax(string oznaka) {
             int broj;

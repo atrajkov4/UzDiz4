@@ -215,6 +215,7 @@ namespace aletrajko_zadaca_3
                                                         b.inicijaliziraj();
                                                         b.generirajVrijednost();
                                                         b.dodijeliID(Int32.Parse(splitano[4]));
+                                                        b.modelID = Int32.Parse(splitano[3]);
                                                         if(b.tip == m.tip || b.tip == 2) m.la.Add(b);
                                                         else iu.print("Tip aktuatora " + b.naziv + " ne paše mjestu " + m.naziv + "!");
                                                     }
@@ -237,6 +238,7 @@ namespace aletrajko_zadaca_3
                                                         b.inicijaliziraj();
                                                         b.generirajVrijednost();
                                                         b.dodijeliID(Int32.Parse(splitano[4]));
+                                                        b.modelID = Int32.Parse(splitano[3]);
                                                         if (b.tip == m.tip || b.tip == 2) m.ls.Add(b);
                                                         else iu.print("Tip senzora " + b.naziv + " ne paše mjestu " + m.naziv + "!");
                                                     }

@@ -66,15 +66,6 @@ namespace aletrajko_zadaca_3
                         else if (s.naziv.Length >= 8 && s.naziv.Length < 13) iu.print2(s.naziv + "\t\t\t" + s.ID.ToString() + " " + s.ispravnost + "\t\t" + s.vrijednost.ToString() + "\t" + s.min_vrijednost.ToString() + "/" + s.max_vrijednost.ToString() + "\t      " + s.manjkav.ToString());
                         else iu.print2(s.naziv.Substring(0, Math.Min(s.naziv.Length, 30)) + "\t\t" + s.ID.ToString() + " " + s.ispravnost + "\t\t" + s.vrijednost.ToString() + "\t" + s.min_vrijednost.ToString() + "/" + s.max_vrijednost.ToString() + "\t      " + s.manjkav.ToString());
 
-
-                        /*iu.print2("\t\tIspravnost [" + s.ispravnost.ToString() + "]");
-                        iu.print2("\t\tStara Vrijednost : " + s.vrijednost.ToString() + s.komentar);
-                        if (s.ispravnost) s.progresijaVrijednosti();
-                        iu.print2("\t\tNova Vrijednost : " + s.vrijednost.ToString() + s.komentar);
-                        iu.print2("\t\tMin : " + s.min_vrijednost);
-                        iu.print2("\t\tMax : " + s.max_vrijednost);
-                        iu.print2("\t\tBroj zatajenja : " + s.manjkav.ToString() + " puta.");
-                        */
                         GenBrojevaSG gb = GenBrojevaSG.getInstance();
                         if (s.ispravnost && gb.dajSlucajniBroj(0, 10) > 6) {
                             s.progresijaVrijednosti();

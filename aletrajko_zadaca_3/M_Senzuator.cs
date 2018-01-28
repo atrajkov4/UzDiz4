@@ -18,6 +18,7 @@ namespace aletrajko_zadaca_3
         public bool ispravnost { get; set; }
         public decimal vrijednost;
         public int ID;
+        public int modelID;
         public bool uklonjen = false;
         C_Parametri cpar = C_Parametri.getInstance();
         ListaSvegaSG db = ListaSvegaSG.getInstance();

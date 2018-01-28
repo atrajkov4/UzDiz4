@@ -142,7 +142,7 @@ namespace aletrajko_zadaca_3
             {
                 if (m.ID == o)
                 {
-                    iu.print("_________________");
+                    iu.print("_____________________");
                     iu.print(m.dohvatiNaziv());
 
                     if (m.mm.Count() > 0)
@@ -168,7 +168,7 @@ namespace aletrajko_zadaca_3
                             }
                         }
                     }
-                    iu.print("_________________");
+                    iu.print("_____________________");
                 }
                 
 
