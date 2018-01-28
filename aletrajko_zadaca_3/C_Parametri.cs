@@ -122,7 +122,7 @@ namespace aletrajko_zadaca_3
                 help = true;
             }
             
-            if (help) iu.print("\nUnesite argumente  : \nlokaciju exe datoteke* \n-g broj_sjemena \n-m ime_datoteke_mjesta* \n-s ime_dat_senzora* \n-a ime_dat_aktuatora* \n-r ime_dat_rasporeda \n-tcd sekunde_trajanja_ciklusa_dretve \n-br broj_redaka_na_ekranu\n-bs broj_stupaca\n-brk broj_redaka_komandi\n-pi prosječni % ispravnosti");
+            if (help) iu.print("\nUnesite argumente  : \nlokaciju exe datoteke* \n-g broj_sjemena \n-m ime_datoteke_mjesta* \n-s ime_dat_senzora* \n-a ime_dat_aktuatora* \n-r ime_dat_rasporeda\n-kmax maksimalni broj uređaja za pojedini model uređaja\n-kmin minimalni broj uređaja za pojedini model uređaja\nkpov broj uređaja koji se dodaje važećem broju za pojedini model uređaja kada nema raspoloživih uređaja pojedinog modela \n-tcd sekunde_trajanja_ciklusa_dretve \n-br broj_redaka_na_ekranu\n-bs broj_stupaca\n-brk broj_redaka_komandi\n-pi prosječni % ispravnosti");
             else
             {
 
@@ -371,11 +371,17 @@ namespace aletrajko_zadaca_3
                     try
                     {
                         kmin = Int32.Parse(lokalna[index + 1]);
-                        ls.dodajKmin(kmin);
+                        if (kmin < kmax) ls.dodajKmin(kmin);
+                        else {
+                            iu.print("Kmin>=Kmax. Kmin = 5,Kmax = 100");
+                            ls.dodajKmin(5);
+                            ls.dodajKmax(100);
+                        }
+                        
                     }
                     catch (Exception)
                     {
-                        iu.print("Kmin nije dobrog formata.(kmin = 100)");
+                        iu.print("Kmin nije dobrog formata.(kmin = 5)");
                         ls.dodajKmin(5);
                     }
                 }
@@ -395,10 +401,11 @@ namespace aletrajko_zadaca_3
                     }
                     catch (Exception)
                     {
-                        iu.print("Kpov nije dobrog formata.(kpov = 100)");
+                        iu.print("Kpov nije dobrog formata.(kpov = 5)");
                         ls.dodajKpov(5);
                     }
                 }
+                db.pribaviKolekcije();
 
             }
 

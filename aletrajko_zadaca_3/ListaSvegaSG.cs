@@ -13,7 +13,103 @@ namespace aletrajko_zadaca_3
         public static ListaSvegaSG getInstance() {
             return INSTANCE;
         }
+        public int cpn = 0;
+        public void dodajCPN(int n) { cpn = n; }
+        int ctr = 0;
+        public void incCPN() {
+            ctr++;
+        }
+
+        List<ColectUnit> kolekcija = new List<ColectUnit>();
+
+        public void pribaviKolekcije() {
+            
+            for (int i = 0; i < senzori.Count(); i++) {
+                ColectUnit ha = new ColectUnit();
+                ha.model = senzori[i].ID;
+                ha.num = kmin;
+                ha.total = 0;
+                kolekcija.Add(ha);
+            }
+            for (int i = 0; i < aktuatori.Count(); i++)
+            {
+                ColectUnit ha = new ColectUnit();
+                ha.model = aktuatori[i].ID;
+                ha.num = kmin;
+                ha.total = 0;
+                kolekcija.Add(ha);
+            }
+
+        
+        }
+
+        public void tocnoIzKolekcije(int n) {
+            foreach (ColectUnit cu in kolekcija) {
+                if (cu.model == n) {
+                    IspisUpisSG v = IspisUpisSG.getInstance();
+                    v.print("");
+                    v.print("Model :" + cu.model);
+                    v.print("Trenutno :" + cu.num);
+                    v.print("Zamjena :" + cu.subs);
+                    v.print("Ukupno :" + cu.total);
+                    v.print("Max :" + kmax);
+                }
+            }
+        }
+
+        public void dodajUKolekciju(int mdel) {
+            IspisUpisSG v = IspisUpisSG.getInstance();
+            if (kolekcija.Where(a => a.model == mdel).ToList().Count() > 0)
+            {
+                foreach (ColectUnit cu in kolekcija)
+                {
+                    if (cu.model == mdel) {
+                        if (cu.total < kmax)
+                        {
+                            cu.total++;
+                        }
+                        else v.print("Dodavanje u kolekciju onemoguceno. (total=kmax)");
+                    }
+                    
+                }
+            }
+            else {
+                ColectUnit cu = new ColectUnit();
+                cu.model = mdel;
+                cu.num = kmin;
+                cu.total = 1;
+            }
+        }
+
+        public void smanjiBroj(int model) {
+            for (int i = 0; i < kolekcija.Count(); i++) {
+                if (kolekcija[i].model == model) {
+                    if (kolekcija[i].num == 0) {
+                        IspisUpisSG v = IspisUpisSG.getInstance();
+                        v.print("Kolekciji modela " + model + " stize " + kpov + " uređaja.");
+                        kolekcija[i].total += kpov;
+                        kolekcija[i].num += kpov;
+                    }
+                    kolekcija[i].subs++;
+                    kolekcija[i].num--;
+                }
+            }
+            
+        }
+
+        public int vratiBroj(int model) {
+            int br = 0;
+            foreach (ColectUnit cu in kolekcija) {
+                if (cu.model == model) br = cu.num;
+            }
+            return br;
+        }
+
+
         int kmin, kmax, kpov;
+
+        
+
         public void dodajKmin(int n) {
             kmin = n;
         }
@@ -32,6 +128,14 @@ namespace aletrajko_zadaca_3
             return sansa;
         }
         List<Senzor> ks = new List<Senzor>();
+
+        public void pokupiKS() {
+            ks = senzori.OrderBy(a => a.modelID).ToList();
+        }
+        public void pokupiKA() {
+            ka = aktuatori.OrderBy(a=>a.modelID).ToList();
+        }
+
         List<Aktuator> ka = new List<Aktuator>();
         List<Mjesto> mjesta = new List<Mjesto>();
         List<Senzor> senzori = new List<Senzor>();
@@ -58,7 +162,7 @@ namespace aletrajko_zadaca_3
                     s.manjkav = ss.manjkav;
                     s.ispravnost = ss.ispravnost;
                     g.ls.Add(s);
-
+                    
                 }
 
                 foreach (Aktuator a in r.la) {
@@ -129,7 +233,7 @@ namespace aletrajko_zadaca_3
                     foreach (Mjesto mnm in mn.mm) {
                         if (M.ID == mnm.ID) {
                             occ++;
-                            Console.Write("! " + occ.ToString());
+                           
                         }
                         
                     }
@@ -186,10 +290,12 @@ namespace aletrajko_zadaca_3
         }
 
         public void dodajSenzor(Senzor s) {
+            dodajUKolekciju(s.modelID);
             senzori.Add(s);
         }
 
         public void dodajAktuator(Aktuator a) {
+            dodajUKolekciju(a.modelID);
             aktuatori.Add(a);
         }
 

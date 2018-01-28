@@ -42,6 +42,7 @@ namespace aletrajko_zadaca_3
             spariRaspored();
             spariSA();
             spariMjesta();
+           
         }
 
         void spariMjesta()

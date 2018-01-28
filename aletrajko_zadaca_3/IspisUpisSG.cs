@@ -100,7 +100,7 @@ namespace aletrajko_zadaca_3
                
                 Console.Write(s);
 
-                postavi(brojac, bs);
+                postavi(brojac, bs+2);
 
 
                 Console.Write(pofarbaj("zuta"));
@@ -187,11 +187,51 @@ namespace aletrajko_zadaca_3
                         print("S - ispis statistike");
                         print("VP - vrati spremljene podatke(Mj,Ur)");
                         print("C n - izvršavanje n ciklusa dretve");
-                        print("CP n - broj ciklusa dretve nakon kojih je uređaj popravljen i vraća se na raspolaganje (1-99)");
+                        print("CP n - broj ciklusa dretve nakon kojih je uređaj popravljen(1-99)");
                         print("VF - {stat | stat2}");
                         print("PI n - prosječna ispravnost (0-100%)");
                         print("I - izlaz");
                         break;
+
+                    case "CP":
+                        try {
+                            ListaSvegaSG ls = ListaSvegaSG.getInstance();
+                            if (Int32.Parse(dimer[1]) > 99 || Int32.Parse(dimer[1]) < 1) {
+                                print("CP n argument nije u odg.rasponu.");
+                            }
+                            else ls.dodajCPN(Int32.Parse(dimer[1]));
+                        } catch (Exception) {
+                            print("CP n argument nije u dobrom formatu.");
+                        }
+                        break;
+
+                    case "TS":
+                        try
+                        {
+                            ListaSvegaSG ls = ListaSvegaSG.getInstance();
+                            ls.tocnoIzKolekcije(Int32.Parse(dimer[1]));
+                            
+
+                        }
+                        catch (Exception) {
+                            print("ID S nije dobar.");
+                        }
+                        break;
+
+                    case "TA":
+                        try
+                        {
+                            ListaSvegaSG ls = ListaSvegaSG.getInstance();
+                            ls.tocnoIzKolekcije(Int32.Parse(dimer[1]));
+
+
+                        }
+                        catch (Exception)
+                        {
+                            print("ID S nije dobar.");
+                        }
+                        break;
+
                     case "SM":
 
                         try {
@@ -267,12 +307,13 @@ namespace aletrajko_zadaca_3
                            
                             bcd4 = Int32.Parse(dimer[1]);
                             new AlgoritamABC();
+                           
                         }
                         catch (Exception) {
                             print("Broj nije dobrog formata.");
                         }
                        
-                            break;
+                        break;
                     case "VF":
                         try
                         {
